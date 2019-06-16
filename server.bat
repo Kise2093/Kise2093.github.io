@@ -1,0 +1,1 @@
+start putty -ssh mu6@mixipedia.org -pw mu654321

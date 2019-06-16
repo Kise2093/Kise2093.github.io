@@ -1,0 +1,56 @@
+<html>
+   <head>
+
+   </head>
+   <body>
+      <button onclick="player.togglePlay().then(() => {
+            console.log('Toggled playback!');
+          });">Toggle</button>
+      <script src="https://sdk.scdn.co/spotify-player.js"></script>
+      <script>
+         let params = new URLSearchParams(window.location.hash.substring(1))
+         let access_token = params.get("access_token")
+
+         window.onSpotifyWebPlaybackSDKReady = () => {
+            player = new Spotify.Player({
+               name: 'kPlayer',
+               getOAuthToken: getAuth => {
+                  getAuth(access_token);
+               },
+               volume: 0.5
+            })
+
+            player.connect().then(success => {
+               if (success) {
+                  console.log('The Web Playback SDK successfully connected to Spotify!');
+               }
+            })
+
+            player.addListener('ready', ({ device_id }) => {
+               console.log('Connected with Device ID', device_id);
+               fetch(
+                  `https://api.spotify.com/v1/search?q=santuary&type=track`, {
+                     headers: {
+                        'Authorization': `Bearer ${access_token}`
+                     }
+                  }
+               ).then(data => {
+                  data.json().then(({tracks: { items }}) => {
+                     console.log(items)
+                     let uris = items.map(x=>x.uri)
+                     console.log(uris)
+                     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
+                        method: 'PUT',
+                        body: JSON.stringify({ uris }),
+                        headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${access_token}`
+                        },
+                     })
+                  })
+               })
+            })
+         }
+      </script>
+   </body>
+</html>

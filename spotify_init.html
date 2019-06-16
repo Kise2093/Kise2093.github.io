@@ -1,0 +1,47 @@
+<html>
+   <head>
+
+   </head>
+   <body>
+
+      <script src="https://sdk.scdn.co/spotify-player.js"></script>
+      <script>
+
+            window.onSpotifyWebPlaybackSDKReady = () => {
+               console.log('Spotify Ready!')
+               const play = ({
+                  spotify_uri,
+                  playerInstance: {
+                     _options: {
+                        getOAuthToken,
+                        id
+                     }
+                  }
+                  }) => {
+                  getOAuthToken(access_token => {
+                     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
+                        method: 'PUT',
+                        body: JSON.stringify({ uris: [spotify_uri] }),
+                        headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${access_token}`
+                        },
+                     });
+                  });
+               };
+
+               play({
+                  playerInstance: new Spotify.Player({
+                     name: 'Carly Rae Jepsen Player',
+                     getOAuthToken: callback => {
+                        callback('BQAVJ2kHea58mpak65YJR2DFz8yTdC9pstto1NCbmM6SiMJuiEgw2tI2_FpxOKLzHDrjy1SvZf6U3MxaZds');
+                     },
+                     volume: 0.5
+                  }),
+                  spotify_uri: 'spotify:track:7xGfFoTpQ2E7fRF5lN10tr',
+               });
+            }
+
+            </script>
+   </body>
+</html>
