@@ -37,7 +37,8 @@
                '&client_id=' + my_client_id +
                (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
                '&redirect_uri=' + encodeURIComponent(redirect_uri));
-            });
+               console.log(my_client_id)
+            })
 
             player.addListener('ready', ({ device_id }) => {
                console.log('Connected with Device ID', device_id);
