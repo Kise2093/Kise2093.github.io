@@ -29,7 +29,7 @@
             player.addListener('ready', ({ device_id }) => {
                console.log('Connected with Device ID', device_id);
                fetch(
-                  `https://api.spotify.com/v1/search?q=highhope&type=track`, {
+                  `https://api.spotify.com/v1/search?q=afterdark&type=track`, {
                      headers: {
                         'Authorization': `Bearer ${access_token}`
                      }
