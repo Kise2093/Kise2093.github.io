@@ -35,21 +35,21 @@
                }
             })
 
-            console.log(player)
-            
+
+
+            function getUserData(accessToken) {
+                  return $.ajax({
+                        url: 'https://api.spotify.com/v1/me',
+                        headers: {
+                           'Authorization': 'Bearer ' + accessToken
+                        }
+                  });
+               }            
 
             player.addListener('ready', ({ device_id }) => {
                console.log('Connected with Device ID', device_id);
                let user = items
-               fetch(
-                  `https://api.spotify.com/v1/me`, {
-                        method: 'PUT',
-                        body: JSON.stringify({ user }),
-                        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                        },
-                     })
+               
                fetch(
                   `https://api.spotify.com/v1/search?q=sunflower&type=track`, {
                      headers: {
