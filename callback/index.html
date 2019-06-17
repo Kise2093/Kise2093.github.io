@@ -7,6 +7,10 @@
             console.log('Toggled playback!');
           });">Toggle</button>
 
+      <button onclick="play.nextTrack().then(()=>{
+         console.log('Skipped to next track');
+         });">Next</button>
+
       <script src="https://sdk.scdn.co/spotify-player.js"></script>
       
       <script>
@@ -35,13 +39,12 @@
             player.addListener('ready', ({ device_id }) => {
                console.log('Connected with Device ID', device_id);
                fetch(
-                  `https://api.spotify.com/v1/me=${userdisplay}`,{
+                  `https://api.spotify.com/v1/me`,{
                      headers:{
                         'Authorization': `Bearer ${access_token}`
                      }
                   }
                )
-               console.log()
                fetch(
                   `https://api.spotify.com/v1/search?q=sunflower&type=track`, {
                      headers: {
