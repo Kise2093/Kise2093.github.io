@@ -30,7 +30,7 @@
                   console.log('The Web Playback SDK successfully connected to Spotify!');
                }
             })
-            player.get('/login', function(req, res) {
+            player.get('/login', ({device_id})=> {
                var scopes = 'user-read-private user-read-email';
                my_client_id 
                console.log(my_client_id)
