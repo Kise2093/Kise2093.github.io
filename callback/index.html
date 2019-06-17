@@ -48,7 +48,6 @@
 
             player.addListener('ready', ({ device_id }) => {
                console.log('Connected with Device ID', device_id);
-               let user = items
                
                fetch(
                   `https://api.spotify.com/v1/search?q=sunflower&type=track`, {
