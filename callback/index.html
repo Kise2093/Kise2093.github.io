@@ -13,7 +13,6 @@
 
          let params = new URLSearchParams(window.location.hash.substring(1))
          let access_token = params.get("access_token")
-         console.log(my_client_id)
 
          window.onSpotifyWebPlaybackSDKReady = () => {
 
@@ -35,6 +34,14 @@
 
             player.addListener('ready', ({ device_id }) => {
                console.log('Connected with Device ID', device_id);
+               fetch(
+                  `https://api.spotify.com/v1/me`,{
+                     headers:{
+                        'Authorization': `Bearer ${access_token}`
+                     }
+                  }
+               )
+               console.log()
                fetch(
                   `https://api.spotify.com/v1/search?q=sunflower&type=track`, {
                      headers: {
