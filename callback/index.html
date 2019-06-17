@@ -1,23 +1,26 @@
 <html>
    <head>
-
+      Hey you can toggle play and pause in this page.
    </head>
    <body>
       <button onclick="player.togglePlay().then(() => {
             console.log('Toggled playback!');
           });">Toggle</button>
+
       <script src="https://sdk.scdn.co/spotify-player.js"></script>
+      
       <script>
+
          let params = new URLSearchParams(window.location.hash.substring(1))
          let access_token = params.get("access_token")
 
          window.onSpotifyWebPlaybackSDKReady = () => {
             player = new Spotify.Player({
-               name: 'kPlayer',
+               name: 'Kris from web',
                getOAuthToken: getAuth => {
                   getAuth(access_token);
                },
-               volume: 0.5
+               volume: 0.8
             })
 
             player.connect().then(success => {
