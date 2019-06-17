@@ -15,6 +15,8 @@
          let access_token = params.get("access_token")
 
          window.onSpotifyWebPlaybackSDKReady = () => {
+
+
             player = new Spotify.Player({
                name: 'Kris from web',
                getOAuthToken: getAuth => {
@@ -28,6 +30,14 @@
                   console.log('The Web Playback SDK successfully connected to Spotify!');
                }
             })
+            player.get('/login', function(req, res) {
+               var scopes = 'user-read-private user-read-email';
+               res.redirect('https://accounts.spotify.com/authorize' +
+               '?response_type=code' +
+               '&client_id=' + my_client_id +
+               (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
+               '&redirect_uri=' + encodeURIComponent(redirect_uri));
+            });
 
             player.addListener('ready', ({ device_id }) => {
                console.log('Connected with Device ID', device_id);
