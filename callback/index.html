@@ -34,17 +34,9 @@
                   console.log('The Web Playback SDK successfully connected to Spotify!');
                }
             })
+            
 
-
-
-            function getUserData(accessToken) {
-                  return $.ajax({
-                        url: 'https://api.spotify.com/v1/me',
-                        headers: {
-                           'Authorization': 'Bearer ' + accessToken
-                        }
-                  });
-               }            
+        
 
             player.addListener('ready', ({ device_id }) => {
                console.log('Connected with Device ID', device_id);
@@ -71,26 +63,23 @@
                   })
                })
             })
+
+            player.getCurrentState().then(state => {
+               if (!state) {
+                  console.error('User is not playing music through the Web Playback SDK');
+                  return;
+               }
+
+               let {
+                  current_track,
+                  next_tracks: [next_track]
+               } = state.track_window;
+
+               console.log('Currently Playing', current_track);
+               console.log('Playing Next', next_track);
+            });
          }
       </script>
-      <script id="result-template" type="text/x-handlebars-template">
-         <dl>
-           <img src="{{images.0.url}}">
-           <dt>User Name</dt>
-           <dd>{{id}}</dd>
-           <dt>Display Name</dt>
-           <dd>{{display_name}}</dd>
-           <dt>Country</dt>
-           <dd>{{country}}</dd>
-           <dt>Followers</dt>
-           <dd>{{followers.total}}</dd>
-           <dt>Profile</dt>
-           <dd><a href="{{external_urls.spotify}}" target="_blank">{{external_urls.spotify}}</a></dd>
-           <dt>Email</dt>
-           <dd>{{email}}</dd>
-           <dt>Product</dt>
-           <dd>{{product}}</dd>
-         </dl>
-     </script>
+      
    </body>
 </html>
