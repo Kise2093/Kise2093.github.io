@@ -52,13 +52,17 @@
                   console.log('The Web Playback SDK successfully connected to Spotify!');
                }
             })
-            fetch(
+            akay = fetch(
                   `https://api.spotify.com/v1/search?q=afterdark&type=track`, {
                      headers: {
                         'Authorization': `Bearer ${access_token}`
                      }
                   }
-               )
+               ).then(data1 =>{
+                  data1.json()
+               })
+               console.log(akay);
+
 
             player.addListener('ready', ({ device_id }) => {
                console.log('Web Playback is ready to be played!');
