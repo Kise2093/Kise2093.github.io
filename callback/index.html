@@ -58,7 +58,7 @@
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${access_token}`
                         },
-                     }).getCurrentState().then(state => {
+                     }).then(state => {
                            if (!state) {
                               console.error('User is not playing music through the Web Playback SDK');
                               return;
