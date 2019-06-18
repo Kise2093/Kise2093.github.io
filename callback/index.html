@@ -52,17 +52,18 @@
                   console.log('The Web Playback SDK successfully connected to Spotify!');
                }
             })
-
-            player.addListener('ready', ({ device_id }) => {
-               console.log('Web Playback is ready to be played!');
-               console.log('Connected with Device ID', device_id);
-               fetch(
+            fetch(
                   `https://api.spotify.com/v1/search?q=afterdark&type=track`, {
                      headers: {
                         'Authorization': `Bearer ${access_token}`
                      }
                   }
                )
+
+            player.addListener('ready', ({ device_id }) => {
+               console.log('Web Playback is ready to be played!');
+               console.log('Connected with Device ID', device_id);
+               
                
                fetch(
                   `https://api.spotify.com/v1/search?q=sunflower&type=track`, {
