@@ -68,8 +68,10 @@
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${access_token}`
                      }
-            }
-            )
+               }).then(data2 =>{
+                  data2.json().then((user)=>{console.log(krisinfo)})
+               })
+            
 
 
             player.addListener('ready', ({ device_id }) => {
