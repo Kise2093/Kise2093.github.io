@@ -65,8 +65,9 @@
             })
 
             player.getCurrentState().then(state => {
-               console.log(state);
-               if (!state) {
+                if (!state) {
+                  console.log(state);
+
                   console.error('User is not playing music through the Web Playback SDK');
                   return;
                }
