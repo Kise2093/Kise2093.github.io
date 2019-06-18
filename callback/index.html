@@ -70,9 +70,7 @@
                      }
                }).then(data2 =>{
                   data2.json().then((user)=>{console.log(user)})
-               }).player.setName(user.id).then(() => {
-               console.log('Player name updated!');
-            });
+               })
             
 
 
@@ -104,8 +102,16 @@
                })
             })
 
-            player.setName().then(() => {
+            player.setName(user.id).then(({user: {id}}) => {
                console.log('Player name updated!');
+
+               fetch(`https://api.spotify.com/v1/me`,{
+               headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${access_token}`
+                     }
+               })
+
             });
 
             
