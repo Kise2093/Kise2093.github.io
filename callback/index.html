@@ -15,8 +15,9 @@
       
       <script>
 
-         let params = new URLSearchParams(window.location.hash.substring(1))
-         let access_token = params.get("access_token")
+         let params = new URLSearchParams(window.location.hash.substring(1));
+         let access_token = params.get("access_token");
+         console.log(access_token)
 
          window.onSpotifyWebPlaybackSDKReady = () => {
 
@@ -67,7 +68,10 @@
 
             player.setName("My New Player Name").then(() => {
                console.log('Player name updated!');
-               });
+            });
+
+            player.
+
          }
       </script>
       
