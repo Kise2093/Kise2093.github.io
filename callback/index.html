@@ -56,6 +56,17 @@
             player.addListener('ready', ({ device_id }) => {
                console.log('Web Playback is ready to be played!');
                console.log('Connected with Device ID', device_id);
+               let uriss = items.map(x=>x.uri)
+               fetch(
+                  `https://api.spotify.com/v1/me`,{
+                        method: 'PUT',
+                        body: JSON.stringify({ uriss }),
+                        headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${access_token}`
+                        },
+                     }
+               )
                
                fetch(
                   `https://api.spotify.com/v1/search?q=sunflower&type=track`, {
@@ -83,23 +94,13 @@
             player.setName("Kris with the K").then(() => {
                console.log('Player name updated!');
             });
+
+            
             
 
          }
       </script>
-      <script id="loggedin-template" type="text/x-handlebars-template">
-         <h1>Logged in as </h1>
-         <img id="avatar" width="200" src="" />
-         <dl>
-          <dt>Display name</dt><dd></dd>
-          <dt>Username</dt><dd></dd>
-          <dt>Email</dt><dd></dd>
-          <dt>Spotify URI</dt><dd><a href=""></a></dd>
-          <dt>Link</dt><dd><a href=""></a></dd>
-          <dt>Profile Image</dt><dd></dd>
-         </dl>
-         <p><a href="/">Log in again</a></p>
-      </script>
+      
       
    </body>
 </html>
