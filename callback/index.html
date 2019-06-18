@@ -14,13 +14,12 @@
       <script src="https://sdk.scdn.co/spotify-player.js"></script>
       
       <script>
-
          let params = new URLSearchParams(window.location.hash.substring(1));
+         console.log(location.hash.substring(1));
          let access_token = params.get("access_token");
          console.log(access_token);
 
          window.onSpotifyWebPlaybackSDKReady = () => {
-
 
             player = new Spotify.Player({
                name: 'Kris from web',
@@ -58,20 +57,7 @@
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${access_token}`
                         },
-                     }).then(state => {
-                           if (!state) {
-                              console.error('User is not playing music through the Web Playback SDK');
-                              return;
-                           }
-
-                           let {
-                              current_track,
-                              next_tracks: [next_track]
-                           } = state.track_window;
-
-                           console.log('Currently Playing', current_track);
-                           console.log('Playing Next', next_track);
-                        });
+                     })
                   })
                })
             })
