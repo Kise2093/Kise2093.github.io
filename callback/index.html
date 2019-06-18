@@ -56,11 +56,10 @@
             player.addListener('ready', ({ device_id }) => {
                console.log('Web Playback is ready to be played!');
                console.log('Connected with Device ID', device_id);
-               let uriss = items.map(x=>x.uri)
                fetch(
                   `https://api.spotify.com/v1/me`,{
                         method: 'PUT',
-                        body: JSON.stringify({ uriss }),
+                        body: JSON(items),
                         headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${access_token}`
