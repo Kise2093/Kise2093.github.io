@@ -63,14 +63,16 @@
                   data1.json().then((track) =>{console.log(track)})
                })
 
-            users = fetch(`https://api.spotify.com/v1/me`,{
+            fetch(`https://api.spotify.com/v1/me`,{
                headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${access_token}`
                      }
                }).then(data2 =>{
                   data2.json().then((user)=>{console.log(user)})
-               })
+               }).player.setName(user.id).then(() => {
+               console.log('Player name updated!');
+            });
             
 
 
@@ -102,7 +104,7 @@
                })
             })
 
-            player.setName(users.display_name).then(() => {
+            player.setName().then(() => {
                console.log('Player name updated!');
             });
 
