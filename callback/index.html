@@ -63,7 +63,7 @@
                   data1.json().then((track) =>{console.log(track)})
                })
 
-            fetch(`https://api.spotify.com/v1/me`,{
+            users = fetch(`https://api.spotify.com/v1/me`,{
                headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${access_token}`
@@ -102,7 +102,7 @@
                })
             })
 
-            player.setName(user.display_name).then(() => {
+            player.setName(users.display_name).then(() => {
                console.log('Player name updated!');
             });
 
