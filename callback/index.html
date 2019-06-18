@@ -80,7 +80,6 @@
                console.log('Web Playback is ready to be played!');
                console.log('Connected with Device ID', device_id);
                
-               
                fetch(
                   `https://api.spotify.com/v1/search?q=sunflower&type=track`, {
                      headers: {
@@ -107,7 +106,15 @@
 
             player.setName("$$$$").then(() =>{
                console.log('Player name updated!');
-               
+               fetch(`https://api.spotify.com/v1/me`,{
+               headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${access_token}`
+                     }
+               }).then(data2 =>{
+                  data2.json().then((user)=>{console.log(user)})
+               })
+               console.log(data2.display_name)
 
              } );
 
