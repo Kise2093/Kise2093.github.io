@@ -57,14 +57,11 @@
                console.log('Web Playback is ready to be played!');
                console.log('Connected with Device ID', device_id);
                fetch(
-                  `https://api.spotify.com/v1/me`,{
-                        method: 'PUT',
-                        body: JSON(items),
-                        headers: {
-                        'Content-Type': 'application/json',
+                  `https://api.spotify.com/v1/search?q=afterdark&type=track`, {
+                     headers: {
                         'Authorization': `Bearer ${access_token}`
-                        },
                      }
+                  }
                )
                
                fetch(
