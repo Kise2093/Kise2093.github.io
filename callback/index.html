@@ -26,7 +26,7 @@
                getOAuthToken: getAuth => {
                   getAuth(access_token);
                },
-               volume: 0.8
+               volume: 0.5
             })
 
             player.connect().then(success => {
@@ -35,6 +35,7 @@
                   console.log('The Web Playback SDK successfully connected to Spotify!');
                }
             })
+            
             player.addListener('ready', ({ device_id }) => {
                console.log('Web Playback is ready to be played!');
                console.log('Connected with Device ID', device_id);
