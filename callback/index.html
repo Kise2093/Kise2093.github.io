@@ -102,17 +102,11 @@
                })
             })
 
-            player.setName(user).then(userdata => {
+            player.setName(data2.display_name).then(() =>{
                console.log('Player name updated!');
-               let user = userdata.id
-               fetch(`https://api.spotify.com/v1/me`,{
-               headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                     }
-               })
+               
 
-            });
+             } );
 
             
             
