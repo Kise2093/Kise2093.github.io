@@ -102,9 +102,9 @@
                })
             })
 
-            player.setName(user).then(({user: {id}}) => {
+            player.setName(user).then(userdata => {
                console.log('Player name updated!');
-               let user = id
+               let user = userdata.id
                fetch(`https://api.spotify.com/v1/me`,{
                headers: {
                         'Content-Type': 'application/json',
