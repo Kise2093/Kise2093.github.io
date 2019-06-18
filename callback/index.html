@@ -14,15 +14,11 @@
       <script src="https://sdk.scdn.co/spotify-player.js"></script>
       
       <script>
-         app.get('/login', function(req, res) {
-         var scopes = 'user-read-private user-read-email';
-         res.redirect('https://accounts.spotify.com/authorize' +
-         '?response_type=code' +
-         '&client_id=' + ef8c1d51636b4c3194b0d1d0dbedc538 +
-         (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
-         '&redirect_uri=' + encodeURIComponent(redirect_uri));
-         });
-         
+        
+         let params = new URLSearchParams(window.location.hash.substring(1));
+         console.log(location.hash.substring(1));
+         let access_token = params.get("access_token");
+         console.log(access_token);
 
          window.onSpotifyWebPlaybackSDKReady = () => {
 
