@@ -132,8 +132,8 @@
                })
             })
             console.log(player.addListener);
-
-            player.setName(result.display_name).then(() =>{
+            var username;
+            player.setName(username).then(() =>{
 
                let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
                headers: {
@@ -144,7 +144,7 @@
                
                getuserdata.then(function(result){
                   console.log(result.display_name)
-                  return result.display_name
+                  username = resul.display_name;
                })
 
                console.log('Player name updated!');
