@@ -50,7 +50,6 @@
             })
 
             player.connect().then(success => {
-               console.log(success);
                if (success) {
                   console.log('The Web Playback SDK successfully connected to Spotify!');
                }
@@ -103,7 +102,7 @@
             getuserdata.then(function(result){
                //printing into console log the whole result of getting user data
                console.log(result);
-               document.getElementById("display_name").innerHTML
+               document.getElementById("display_name").innerHTML = result.display_name
 
             player.setName(result.display_name).then(() =>{
                console.log('Player name updated!');
