@@ -1,30 +1,104 @@
 <html>
-   <head>Hey</head>
+   <head>
+      Hey you can toggle play and pause in this page.
+   </head>
    <body>
+      <button onclick="player.togglePlay().then(() => {
+            console.log('Toggled playback!');
+          });">Toggle</button>
+
+      <button onclick="player.nextTrack().then(()=>{
+         console.log('Skipped to next track');
+         });">Next</button>
+
+      <button onclick="player.disconnect()">disconnect</button>
+      <button onclick="player.getCurrentState().then(state => {
+            if (!state) {
+              console.error('User is not playing music through the Web Playback SDK');
+              return;
+            }
+          
+            let {
+              current_track,
+              next_tracks: [next_track]
+            } = state.track_window;
+          
+            console.log('Currently Playing', current_track);
+            console.log('Playing Next', next_track);
+          });">Current</button>
+
+
+
+      <script src="https://sdk.scdn.co/spotify-player.js"></script>
+      
       <script>
-         var z;
-               function getx(x){
-                     x = 3;
-                  return x
+        
+         let params = new URLSearchParams(window.location.hash.substring(1));
+         console.log(location.hash.substring(1));
+         let access_token = params.get("access_token");
+         console.log(access_token);
+
+         window.onSpotifyWebPlaybackSDKReady = () => {
+
+            player = new Spotify.Player({
+               name: 'Kris from web',
+               getOAuthToken: getAuth => {
+                  getAuth(access_token);
+               },
+               volume: 0.5
+            })
+
+            player.connect().then(success => {
+               console.log(success);
+               if (success) {
+                  console.log('The Web Playback SDK successfully connected to Spotify!');
                }
-               function gety(y){
-                  y = 4;
-                  z = y + getx();
-                  z
-                  return z;
-               }
-               gety()
-               console.log(gety())
-
-               function loadScript(src, callback) {
-                  let script = document.createElement('script');
-                  script.src = src;
-
-                  script.onload = () => callback(null, script);
-                  script.onerror = () => callback(new Error(`Script load error for ${src}`));
-
-                  document.head.append(script);
+            })
+       
+              let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
+               headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${access_token}`
+                     }
+               }).then(data5 => data5.json())
+               
+               getuserdata.then(function(result){
+                  console.log(result.display_name)
+                  
+               })
+             
+            player.addListener('ready', ({ device_id }) => {
+               console.log('Web Playback is ready to be played!');
+               console.log('Connected with Device ID', device_id);
+               fetch(
+                  `https://api.spotify.com/v1/search?q=sunflower&type=track`, {
+                     headers: {
+                        'Authorization': `Bearer ${access_token}`
+                     }
                   }
+               ).then(data => {
+                  data.json().then(({tracks: { items }}) => {
+                     console.log(items)
+                     let uris = items.map(x=>x.uri)
+                     console.log(uris)
+                     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
+                        method: 'PUT',
+                        body: JSON.stringify({ uris }),
+                        headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${access_token}`
+                        },
+                     })
+                  })
+               })
+            })
+    
+            
+
+
+         }
       </script>
+      
+      
    </body>
 </html>

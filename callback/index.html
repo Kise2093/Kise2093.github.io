@@ -122,7 +122,7 @@
                      }
                }).then(data5 => data5.json())
 
-               
+
                }
 
 
@@ -167,6 +167,7 @@
                getuserdata.then(function(result){
                   console.log(result.display_name)
                   username = result.display_name;
+                  return username;
                })
                console.log(username);
 
