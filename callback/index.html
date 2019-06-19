@@ -113,7 +113,6 @@
                   z
                   return z;
                }
-               console.log(getuserdata)
 
                function getusernames(result){
                   let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
@@ -122,6 +121,8 @@
                         'Authorization': `Bearer ${access_token}`
                      }
                }).then(data5 => data5.json())
+
+               
                }
 
 
