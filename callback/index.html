@@ -100,11 +100,12 @@
                
                getuserdata.then(function(result){
                   console.log(result.display_name)
-                  
-                  user_name = result.display_name;
-                  return user_name;
-               })
-              console.log(user_name);
+                  log(result);
+              })
+
+              function log(x){
+                 document.write(x);
+              }
 
 
 
