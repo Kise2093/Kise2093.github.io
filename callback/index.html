@@ -64,15 +64,20 @@
                ).then(data1 =>{
                   data1.json().then((track) =>{console.log(track)})
                })
-
+            let userdata;
             fetch(`https://api.spotify.com/v1/me`,{
                headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${access_token}`
                      }
                }).then(data2 =>{
-                  data2.json().then((user)=>{console.log(user)})
+                  data2.json().then((user)=>
+                  {
+                     userdata = user;  
+                     //console.log(user)
+                  })
                })
+               console.log(userdata)
             
 
 
