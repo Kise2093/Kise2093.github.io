@@ -97,8 +97,13 @@
                         'Authorization': `Bearer ${access_token}`
                      }
                }).then(data5 => data5.json())
+               
                getuserdata.then(function(result){
                   console.log(result.display_name)
+                  st
+                  user_name = result.display_name;
+                  return name;
+
                   
                })
               //console.log(getuserdata);
@@ -135,7 +140,7 @@
             })
             console.log(player.addListener);
 
-            player.setName("$$$$").then(() =>{
+            player.setName(user_name).then(() =>{
                console.log('Player name updated!');
                fetch(`https://api.spotify.com/v1/me`,{
                headers: {
@@ -145,8 +150,6 @@
                }).then(data2 =>{
                   data2.json().then((user)=>{console.log(user)})
                })
-               console.log(user.display_name);
-
              } );
 
             
