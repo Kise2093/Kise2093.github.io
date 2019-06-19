@@ -80,8 +80,7 @@
                })
                console.log(userdata);
 
-               let jsonuser;
-               fetch(`https://api.spotify.com/v1/me`,{
+               const josnuser = fetch(`https://api.spotify.com/v1/me`,{
                headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${access_token}`
@@ -93,7 +92,7 @@
                      jsonuser = json;
                   }
                )
-               console.log(user.json);
+               console.log(jsonuser);
 
             
 
