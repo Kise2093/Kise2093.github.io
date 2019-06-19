@@ -100,10 +100,8 @@
                
                getuserdata.then(function(result){
                   console.log(result.display_name)
-                  return result.display_name
-              })
-
-              console.log(getuserdata);
+                  
+               })
 
 
 
@@ -135,7 +133,8 @@
             })
             console.log(player.addListener);
 
-            player.setName(getuserdata).then(() =>{
+            player.setName(getuserdata.then(function(result){
+                  return result.display_name;})).then(() =>{
                console.log('Player name updated!');
                fetch(`https://api.spotify.com/v1/me`,{
                headers: {
