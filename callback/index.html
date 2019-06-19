@@ -79,6 +79,22 @@
                   })
                })
                console.log(userdata);
+
+               let jsonuser;
+               fetch(`https://api.spotify.com/v1/me`,{
+               headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${access_token}`
+                     }
+               }).then(
+                  function(user){ return user.json();}
+               ).then(
+                  function(json){
+                     jsonuser = json;
+                  }
+               )
+               console.log(jsonuser);
+
             
 
 
