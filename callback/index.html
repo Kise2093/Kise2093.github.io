@@ -155,21 +155,13 @@
             })
             console.log(player.addListener);
             var username;
-            player.setName(username).then(() =>{
 
-               let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
-               headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                     }
-               }).then(data5 => data5.json())
+            getuserdata.then(function(result){
+                  
                
-               getuserdata.then(function(result){
-                  console.log(result.display_name)
-                  username = result.display_name;
-                  return username;
-               })
-               console.log(getuserdata);
+            player.setName(result.display_name).then(() =>{
+
+      
 
                console.log('Player name updated!');
                fetch(`https://api.spotify.com/v1/me`,{
@@ -182,6 +174,7 @@
                })
 
              } );
+             })
 
             
             
