@@ -103,6 +103,17 @@
                   
                })
 
+               function getx(x){
+                     x = 3;
+                  return x
+               }
+               function gety(y){
+                  y = 4;
+                  z = y + getx();
+                  return z;
+               }
+               console.log(gety)
+
 
 
             player.addListener('ready', ({ device_id }) => {
