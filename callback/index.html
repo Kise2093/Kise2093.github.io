@@ -108,6 +108,17 @@
                })
               //console.log(getuserdata);
 
+              player.getUserData(url => {
+                 fetch(`https://api.spotify.com/v1/me`,{
+               headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${access_token}`
+                     }
+               }).then(data5 => data5.json())
+              })
+
+              console.log(player.getUserData.display_name)
+
 
             
 
