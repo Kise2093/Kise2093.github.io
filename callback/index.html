@@ -2,6 +2,7 @@
    <head>
       Hey you can toggle play and pause in this page.
    </head>
+   <p id="display_name"></p>
    <body>
       <button onclick="player.togglePlay().then(() => {
             console.log('Toggled playback!');
@@ -100,7 +101,9 @@
             })
 
             getuserdata.then(function(result){
+               //printing into console log the whole result of getting user data
                console.log(result);
+               document.getElementById("display_name").innerHTML
 
             player.setName(result.display_name).then(() =>{
                console.log('Player name updated!');
@@ -111,7 +114,7 @@
                      }
                })
 
-             } );
+             })
              })
          }
       </script>
