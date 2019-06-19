@@ -64,32 +64,6 @@
                ).then(data1 =>{
                   data1.json().then((track) =>{console.log(track)})
                })
-            let userdata;
-            fetch(`https://api.spotify.com/v1/me`,{
-               headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                     }
-               }).then(data2 =>{
-                  data2.json().then((user)=>
-                  {
-                     userdata = user;  
-                     //console.log(user)
-                     return userdata
-                  })
-               })
-               console.log(userdata);
-               url = `https://api.spotify.com/v1/me`;
-              async function getData(url){
-                  const response = await fetch(url, {
-                     headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                     }})
-                  return "hey";
-              }
-              const data = getData(url);
-              console.log(data);
 
               let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
                headers: {
@@ -97,36 +71,7 @@
                         'Authorization': `Bearer ${access_token}`
                      }
                }).then(data5 => data5.json())
-               
-               getuserdata.then(function(result){
-                  console.log(result.display_name)
-                  
-               })
-               var z;
-               function getx(x){
-                     x = 3;
-                  return x
-               }
-               function gety(y){
-                  y = 4;
-                  z = y + getx();
-                  z
-                  return z;
-               }
-
-               function getusernames(result){
-                  let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
-               headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                     }
-               }).then(data5 => data5.json())
-
-
-               }
-
-
-
+         
             player.addListener('ready', ({ device_id }) => {
                console.log('Web Playback is ready to be played!');
                console.log('Connected with Device ID', device_id);
@@ -153,15 +98,10 @@
                   })
                })
             })
-            console.log(player.addListener);
-            var username;
 
             getuserdata.then(function(result){
-                  
                
             player.setName(result.display_name).then(() =>{
-
-      
 
                console.log('Player name updated!');
                fetch(`https://api.spotify.com/v1/me`,{
@@ -175,10 +115,6 @@
 
              } );
              })
-
-            
-            
-
          }
       </script>
       
