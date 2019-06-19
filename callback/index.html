@@ -79,20 +79,17 @@
                   })
                })
                console.log(userdata);
-
-               const josnuser = fetch(`https://api.spotify.com/v1/me`,{
-               headers: {
+               url = `https://api.spotify.com/v1/me`;
+              async function getData(url){
+                  const response = await fetch(url, {
+                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${access_token}`
-                     }
-               }).then(
-                  function(user){ return user.json();}
-               ).then(
-                  function(json){
-                     jsonuser = json;
-                  }
-               )
-               console.log(jsonuser);
+                     }})
+                  return response.json();
+              }
+              const data = await getData(url);
+              console.log(data);
 
             
 
