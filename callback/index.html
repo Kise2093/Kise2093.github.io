@@ -41,6 +41,8 @@
          console.log(location.hash.substring(1));
          let access_token = params.get("access_token");
          console.log(access_token);
+         var trackname = document.getElementById('input_id').value;
+
        
          window.onSpotifyWebPlaybackSDKReady = () => {
 
@@ -59,8 +61,6 @@
                }
             })
             //function for getting track's name
-            function gettrackname(){
-            var trackname = document.getElementById('input_id').value;
             fetch(
                   `https://api.spotify.com/v1/search?q=`+ trackname +`&type=track`, {
                         headers: {
@@ -71,7 +71,7 @@
                ).then(data1 =>{
                   data1.json().then((track) =>{console.log(track)})
                })
-            }
+            
 
             //example for getting our data 
               let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
