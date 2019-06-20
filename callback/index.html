@@ -67,7 +67,7 @@
                var track = document.getElementById('input_id').value;
 
                fetch(
-                     `https://api.spotify.com/v1/search?q=`+ trackname() +`&type=track`, {
+                     `https://api.spotify.com/v1/search?q=`+ track +`&type=track`, {
                            headers: {
                            'Content-Type': 'application/json',
                            'Authorization': `Bearer ${access_token}`
