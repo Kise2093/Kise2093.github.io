@@ -13,28 +13,6 @@
             console.log('Toggled playback!');
           });">Toggle</button>
 
-      <button onclick="player.nextTrack().then(()=>{
-         console.log('Skipped to next track');
-         });">Next</button>
-
-      <button onclick="player.disconnect()">disconnect</button>
-      <button onclick="player.getCurrentState().then(state => {
-            if (!state) {
-              console.error('User is not playing music through the Web Playback SDK');
-              return;
-            }
-          
-            let {
-              current_track,
-              next_tracks: [next_track]
-            } = state.track_window;
-          
-            console.log('Currently Playing', current_track);
-            console.log('Playing Next', next_track);
-          });">Current</button>
-
-
-
       <script src="https://sdk.scdn.co/spotify-player.js"></script>
       
       <script>
@@ -46,9 +24,6 @@
        
        
          window.onSpotifyWebPlaybackSDKReady = () => {
-
-
-            
             player = new Spotify.Player({
                name: 'Kris from web',
                getOAuthToken: getAuth => {
@@ -62,13 +37,9 @@
                   console.log('The Web Playback SDK successfully connected to Spotify!');
                }
             })
-            //function for getting track's name
-            trackname()
-            function trackname(){
-               var track = document.getElementById('input_id').value;
 
-               fetch(
-                     `https://api.spotify.com/v1/search?q=`+ track +`&type=track`, {
+            fetch(
+                     `https://api.spotify.com/v1/search?q=`+ `afterdark` +`&type=track`, {
                            headers: {
                            'Content-Type': 'application/json',
                            'Authorization': `Bearer ${access_token}`
@@ -77,61 +48,8 @@
                   ).then(data1 =>{
                      data1.json().then((track) =>{console.log(track)})
                   })
-            }
+
             
-
-            //example for getting our data 
-              let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
-               headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                     }
-               }).then(data5 => data5.json())
-
-         
-            player.addListener('ready', ({ device_id }) => {
-               console.log('Web Playback is ready to be played!');
-               console.log('Connected with Device ID', device_id);
-               
-               fetch(
-                  `https://api.spotify.com/v1/search?q=Wow.&type=track`, {
-                     headers: {
-                        'Authorization': `Bearer ${access_token}`
-                     }
-                  }
-               ).then(data => {
-                  data.json().then(({tracks: { items }}) => {
-                     console.log(items)
-                     let uris = items.map(x=>x.uri)
-                     console.log(uris)
-                     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
-                        method: 'PUT',
-                        body: JSON.stringify({ uris }),
-                        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                        },
-                     })
-                  })
-               })
-            })
-
-            getuserdata.then(function(result){
-               //printing into console log the whole result of getting user data
-               console.log(result);
-               document.getElementById("display_name").innerHTML = result.display_name
-
-            player.setName(result.display_name).then(() =>{
-               console.log('Player name updated!');
-               fetch(`https://api.spotify.com/v1/me`,{
-               headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                     }
-               })
-
-             })
-             })
          }
       </script>
       

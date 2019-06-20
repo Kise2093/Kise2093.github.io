@@ -43,6 +43,11 @@
          console.log(location.hash.substring(1));
          let access_token = params.get("access_token");
          console.log(access_token);
+         function getvaluefrombox(){
+            var getvalue = document.getElementById("search").value;
+            return getvalue;
+         }
+         document.getElementById("input_id").innerHTML = myFunction();
        
        
          window.onSpotifyWebPlaybackSDKReady = () => {
