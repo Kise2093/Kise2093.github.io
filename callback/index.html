@@ -66,6 +66,7 @@
                }
             })
             //function for getting track's name
+            function checktrack(){
             if(trackname != null){
             fetch(
                   `https://api.spotify.com/v1/search?q=`+ trackname() +`&type=track`, {
@@ -78,6 +79,11 @@
                   data1.json().then((track) =>{console.log(track)})
                })
             }
+            else {
+               window.setTimeout(checktrack,100)
+            }
+            }
+            checktrack();
             
 
             //example for getting our data 
