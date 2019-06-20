@@ -12,15 +12,22 @@
             <input type="text" id="input_id" value="">
             <input type="button" value="Submit" onclick="wawa()" />
             <div id="alert" style="color: red"></div>
+
+            <input type="text" id="name" value="">
+            <input type="button" value="Submit" onclick="wawa()" />
+
+            <input type="text" id="songname" value="">
+            <input type="button" value="Submit" onclick="wawa()" />
       </form>
 </body>
 
 <script>
-   var vari = document.getElementById('input_id').value;
-   console.log(vari);
+   
    function wawa() {
       var variable = document.getElementById('input_id').value;
-      document.getElementById('alert').innerHTML = 'The user input is: ' + variable;
+      var name = document.getElementById('name').value;
+      document.getElementById('songname').value;
+      document.getElementById('alert').innerHTML = 'The user input is: ' + variable + '?' + name + 'what' + songname;
       //console.log(variable)
       url = "www.kise2093.github.io/"+ variable
       console.log(url)
