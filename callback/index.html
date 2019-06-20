@@ -54,8 +54,9 @@
                   console.log('The Web Playback SDK successfully connected to Spotify!');
                }
             })
+            
+            trackname = "afterdark"
             fetch(
-                  trackname = "afterdark"
                   `https://api.spotify.com/v1/search?q=`+ trackname +`&type=track`, {
                         headers: {
                         'Content-Type': 'application/json',
