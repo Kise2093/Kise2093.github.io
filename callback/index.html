@@ -46,9 +46,11 @@
             return track;
          }
          
-         console.log(trackname());
        
          window.onSpotifyWebPlaybackSDKReady = () => {
+
+            console.log(trackname());
+
             
             player = new Spotify.Player({
                name: 'Kris from web',
