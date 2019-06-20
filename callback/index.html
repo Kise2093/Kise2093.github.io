@@ -68,7 +68,7 @@
             //function for getting track's name
 
             fetch(
-                  `https://api.spotify.com/v1/search?q=`+ trackname +`&type=track`, {
+                  `https://api.spotify.com/v1/search?q=`+ trackname() +`&type=track`, {
                         headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${access_token}`
