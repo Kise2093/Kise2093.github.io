@@ -5,8 +5,8 @@
    <p id="display_name"></p>
    <body>
       <form>
-      <input type="text" id="input_id" value="">
-      <input type="button" value="Submit" onclick="trackname()" />
+            <input type="text" id="input_id" value="">
+            <input type="button" value="Submit" onclick="trackname()" />
       </form>
 
       <button onclick="player.togglePlay().then(() => {
@@ -43,14 +43,9 @@
          console.log(location.hash.substring(1));
          let access_token = params.get("access_token");
          console.log(access_token);
-         function trackname(){
-            var track = document.getElementById('input_id').value;
-            return track;
-         }
-         
+       
        
          window.onSpotifyWebPlaybackSDKReady = () => {
-            var track = document.getElementById('input_id').value;
 
             console.log(track);
 
@@ -69,17 +64,20 @@
                }
             })
             //function for getting track's name
-            fetch(
-                  `https://api.spotify.com/v1/search?q=`+ trackname() +`&type=track`, {
-                        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
+            function trackname(){
+               var track = document.getElementById('input_id').value;
+
+               fetch(
+                     `https://api.spotify.com/v1/search?q=`+ trackname() +`&type=track`, {
+                           headers: {
+                           'Content-Type': 'application/json',
+                           'Authorization': `Bearer ${access_token}`
+                        }
                      }
-                  }
-               ).then(data1 =>{
-                  data1.json().then((track) =>{console.log(track)})
-               })
-            
+                  ).then(data1 =>{
+                     data1.json().then((track) =>{console.log(track)})
+                  })
+            }
             
 
             //example for getting our data 
