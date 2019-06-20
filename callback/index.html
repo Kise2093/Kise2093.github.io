@@ -5,7 +5,7 @@
    <p id="display_name"></p>
    <body>
       <input type="text" id="input_id" value="">
-      <input type="button" value="Submit" onclick="trackname" />
+      <input type="button" value="Submit" onclick="trackname()" />
 
       <button onclick="player.togglePlay().then(() => {
             console.log('Toggled playback!');
@@ -41,14 +41,14 @@
          console.log(location.hash.substring(1));
          let access_token = params.get("access_token");
          console.log(access_token);
-         var trackname = document.getElementById('input_id').value;
-
+         function trackname(){
+            var track = document.getElementById('input_id').value;
+            return track;
+         }
+         console.log
        
          window.onSpotifyWebPlaybackSDKReady = () => {
-            function best(trackname){
-               console.log(trackname);
-            }
-
+            
             player = new Spotify.Player({
                name: 'Kris from web',
                getOAuthToken: getAuth => {
