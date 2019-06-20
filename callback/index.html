@@ -83,7 +83,7 @@
                      }
                   }
                ).then(data => {
-                  data.json().then(({tracks: { items }}) => {
+                  data.json().then(({artists: { items }}) => {
                      console.log(items)
                      let uris = items.map(x=>x.uri)
                      console.log(uris)
