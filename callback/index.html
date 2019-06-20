@@ -42,11 +42,12 @@
          let access_token = params.get("access_token");
          console.log(access_token);
          function gettrackname(){
-            
+            id = "5555"
          }
 
          window.onSpotifyWebPlaybackSDKReady = () => {
 
+            console.log(gettrackname.id)
             player = new Spotify.Player({
                name: 'Kris from web',
                getOAuthToken: getAuth => {
