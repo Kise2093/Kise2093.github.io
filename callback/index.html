@@ -45,6 +45,9 @@
 
        
          window.onSpotifyWebPlaybackSDKReady = () => {
+            function best(trackname){
+               console.log(trackname);
+            }
 
             player = new Spotify.Player({
                name: 'Kris from web',
@@ -60,6 +63,7 @@
                }
             })
             //function for getting track's name
+
             fetch(
                   `https://api.spotify.com/v1/search?q=`+ trackname +`&type=track`, {
                         headers: {
