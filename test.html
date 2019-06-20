@@ -2,32 +2,16 @@
    <head>
       Hey you can toggle play and pause in this page.
    </head>
+   <p id="display_name"></p>
    <body>
+      <form>
+            <input type="text" id="input_id" value="">
+            <input type="button" value="Submit" onclick="trackname()" />
+      </form>
+
       <button onclick="player.togglePlay().then(() => {
             console.log('Toggled playback!');
           });">Toggle</button>
-
-      <button onclick="player.nextTrack().then(()=>{
-         console.log('Skipped to next track');
-         });">Next</button>
-
-      <button onclick="player.disconnect()">disconnect</button>
-      <button onclick="player.getCurrentState().then(state => {
-            if (!state) {
-              console.error('User is not playing music through the Web Playback SDK');
-              return;
-            }
-          
-            let {
-              current_track,
-              next_tracks: [next_track]
-            } = state.track_window;
-          
-            console.log('Currently Playing', current_track);
-            console.log('Playing Next', next_track);
-          });">Current</button>
-
-
 
       <script src="https://sdk.scdn.co/spotify-player.js"></script>
       
@@ -37,65 +21,33 @@
          console.log(location.hash.substring(1));
          let access_token = params.get("access_token");
          console.log(access_token);
-
+       
+       
          window.onSpotifyWebPlaybackSDKReady = () => {
-
             player = new Spotify.Player({
                name: 'Kris from web',
                getOAuthToken: getAuth => {
                   getAuth(access_token);
                },
-               volume: 0.5
+               volume: 0.4
             })
 
             player.connect().then(success => {
-               console.log(success);
                if (success) {
                   console.log('The Web Playback SDK successfully connected to Spotify!');
                }
             })
-       
-              let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
-               headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
+
+            fetch(
+                     `https://api.spotify.com/v1/search?q=`+ `afterdark` +`&type=track`, {
+                           headers: {
+                           'Content-Type': 'application/json',
+                           'Authorization': `Bearer ${access_token}`
+                        }
                      }
-               }).then(data5 => data5.json())
-               
-               getuserdata.then(function(result){
-                  console.log(result.display_name)
-                  
-               })
-             
-            player.addListener('ready', ({ device_id }) => {
-               console.log('Web Playback is ready to be played!');
-               console.log('Connected with Device ID', device_id);
-               fetch(
-                  `https://api.spotify.com/v1/search?q=sunflower&type=track`, {
-                     headers: {
-                        'Authorization': `Bearer ${access_token}`
-                     }
-                  }
-               ).then(data => {
-                  data.json().then(({tracks: { items }}) => {
-                     console.log(items)
-                     let uris = items.map(x=>x.uri)
-                     console.log(uris)
-                     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`, {
-                        method: 'PUT',
-                        body: JSON.stringify({ uris }),
-                        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                        },
-                     })
+                  ).then(data1 =>{
+                     data1.json().then((track) =>{console.log(track)})
                   })
-               })
-            })
-    
-            
-
-
          }
       </script>
       
