@@ -77,13 +77,13 @@
                console.log('Connected with Device ID', device_id);
                
                fetch(
-                  `https://api.spotify.com/v1/search?q=post&type=artist`, {
+                  `https://api.spotify.com/v1/search?q=betternow&type=track`, {
                      headers: {
                         'Authorization': `Bearer ${access_token}`
                      }
                   }
                ).then(data => {
-                  data.json().then(({artists: { items }}) => {
+                  data.json().then(({tracks: { items }}) => {
                      console.log(items)
                      let uris = items.map(x=>x.uri)
                      console.log(uris)
