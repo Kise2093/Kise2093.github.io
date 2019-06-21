@@ -80,6 +80,7 @@
             //function for getting track's name
          //this one is still broke
            // getvaluefrombox().then(values =>{
+              async function waitforinput(getv){
                fetch(
                      `https://api.spotify.com/v1/search?q=`+ output +`&type=track`, {
                            headers: {
@@ -90,6 +91,7 @@
                   ).then(data1 =>{
                      data1.json().then((track) =>{console.log(track)})
                   })
+              }
            // })
             
             
