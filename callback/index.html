@@ -77,7 +77,7 @@
             })
             //function for getting track's name
          //this one is still broke
-            getvaluefrombox().then(values =>{
+           // getvaluefrombox().then(values =>{
                fetch(
                      `https://api.spotify.com/v1/search?q=`+ values +`&type=track`, {
                            headers: {
@@ -88,7 +88,7 @@
                   ).then(data1 =>{
                      data1.json().then((track) =>{console.log(track)})
                   })
-            })
+           // })
             
             
 
@@ -145,6 +145,19 @@
              })
              })
          }
+
+         getvaluefrombox().then(values =>{
+               fetch(
+                     `https://api.spotify.com/v1/search?q=`+ values +`&type=track`, {
+                           headers: {
+                           'Content-Type': 'application/json',
+                           'Authorization': `Bearer ${access_token}`
+                        }
+                     }
+                  ).then(data1 =>{
+                     data1.json().then((track) =>{console.log(track)})
+                  })
+            })
       </script>
       
       
