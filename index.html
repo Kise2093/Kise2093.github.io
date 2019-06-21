@@ -24,6 +24,18 @@
 </body>
 
 <script>
+
+   var song = {
+      songname: "Afterdark",
+      Artist: "Kris",
+      id: "2093",
+
+      fullname: function(){
+         return this.songname + " " + this.id;
+      }
+   };
+   console.log(song.songname)
+   console.log(song.fullname)
    console.log(btnm);
     function getvaluefrombox(){
                var getvalue = document.getElementById("id").value;
