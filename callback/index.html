@@ -49,7 +49,8 @@
                console.log(getvalue);
               return getvalue;
             }
-           //output = document.getElementById("input_id").innerHTML = getvaluefrombox();
+            getv = getvaluefrombox();
+           output = document.getElementById("input_id").innerHTML = getvaluefrombox();
            
        
        
@@ -79,7 +80,7 @@
          //this one is still broke
            // getvaluefrombox().then(values =>{
                fetch(
-                     `https://api.spotify.com/v1/search?q=`+ values +`&type=track`, {
+                     `https://api.spotify.com/v1/search?q=`+ output +`&type=track`, {
                            headers: {
                            'Content-Type': 'application/json',
                            'Authorization': `Bearer ${access_token}`
@@ -146,7 +147,7 @@
              })
          }
 
-         getvaluefrombox().then(values =>{
+         getv.then(values =>{
                fetch(
                      `https://api.spotify.com/v1/search?q=`+ values +`&type=track`, {
                            headers: {
