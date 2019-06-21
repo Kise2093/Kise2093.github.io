@@ -76,7 +76,9 @@
        
        
          window.onSpotifyWebPlaybackSDKReady = () => {
+            async function wait(){
             console.log(getvaluefrombox());
+            }
 
             function getvaluefrombox(){
                var getvalue = document.getElementById("input_id").value;
