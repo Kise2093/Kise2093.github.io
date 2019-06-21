@@ -52,19 +52,7 @@
             getv = getvaluefrombox();
            output = document.getElementById("input_id").innerHTML = getvaluefrombox();
            */
-           async function getvaluefrombox(){
-            var output = document.getElementById("input_id").value;
-               fetch(
-                     `https://api.spotify.com/v1/search?q=`+ output +`&type=track`, {
-                           headers: {
-                           'Content-Type': 'application/json',
-                           'Authorization': `Bearer ${access_token}`
-                        }
-                     }
-                  ).then(data1 =>{
-                     data1.json().then((track) =>{console.log(track)})
-                  })
-              }
+           
        
        
          window.onSpotifyWebPlaybackSDKReady = () => {
@@ -92,7 +80,8 @@
             //function for getting track's name
          //this one is still broke
            // getvaluefrombox().then(values =>{
-              async function waitforinput(getv){
+            async function getvaluefrombox(){
+            var output = document.getElementById("input_id").value;
                fetch(
                      `https://api.spotify.com/v1/search?q=`+ output +`&type=track`, {
                            headers: {
