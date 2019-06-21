@@ -44,11 +44,12 @@
          let access_token = params.get("access_token");
          console.log(access_token);
  
-           output =  function getvaluefrombox(){
+           function getvaluefrombox(){
                var getvalue = document.getElementById("input_id").value;
                console.log(getvalue);
               return getvalue;
             }
+            output = getvaluefrombox();
            // output = document.getElementById("input_id").innerHTML = getvaluefrombox();
            
        
