@@ -51,16 +51,7 @@
             }
             getv = getvaluefrombox();
            output = document.getElementById("input_id").innerHTML = getvaluefrombox();
-           fetch(
-                     `https://api.spotify.com/v1/search?q=`+ getvaluefrombox() +`&type=track`, {
-                           headers: {
-                           'Content-Type': 'application/json',
-                           'Authorization': `Bearer ${access_token}`
-                        }
-                     }
-                  ).then(data1 =>{
-                     data1.json().then((track) =>{console.log(track)})
-                  })
+           
            
        
        

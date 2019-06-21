@@ -21,15 +21,21 @@
          <input type="text" id="id" value="">
          <input type="button" value="Submit" onclick= "getvaluefrombox()"/>
       </form>
+      <form >
+         <button onclick="getvaluefrombox()" class="btn">MENU</button>
+      </form>
 </body>
 
 <script>
+   let btnm = document.querySelector("btn");
+   console.log(btnm);
     function getvaluefrombox(){
                var getvalue = document.getElementById("id").value;
                console.log(getvalue);
+               
                return getvalue;
             }
-            
+
             output = getvaluefrombox();
             console.log(getvaluefrombox.getvalue);
    function wawa() {
