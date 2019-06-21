@@ -22,12 +22,14 @@
          <input type="button" value="Submit" onclick= "getvaluefrombox()"/>
       </form>
       <form >
-         <input type="text" id="id" value="">
-         <button onclick="getvaluefrombox()" class="btn">MENU</button>
+         <input type="button" id="id" value="click">
       </form>
 </body>
 
 <script>
+   document.getElementById('id').onclick = function(){
+      alert('hello');
+   };
    let btnm = document.querySelector("btn");
    console.log(btnm);
     function getvaluefrombox(){
