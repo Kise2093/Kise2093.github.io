@@ -62,7 +62,8 @@
                         }
                      }
                   ).then(data1 =>{
-                     data1.json().then((track) =>{console.log(track.items)})
+                     data1.json().then((track) =>{console.log(track.items)
+                     return track})
                   })
                   console.log(track);
               }
