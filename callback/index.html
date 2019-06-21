@@ -52,7 +52,7 @@
             getv = getvaluefrombox();
            output = document.getElementById("input_id").innerHTML = getvaluefrombox();
            */
-           async function getvaluefrombox(){
+          hey = async function getvaluefrombox(){
               var output = document.getElementById("input_id").value;
                fetch(
                      `https://api.spotify.com/v1/search?q=`+ output +`&type=track`, {
@@ -65,6 +65,7 @@
                      data1.json().then((track) =>{console.log(track)})
                   })
               }
+              console.log(hey);
        
        
          window.onSpotifyWebPlaybackSDKReady = () => {
