@@ -64,15 +64,19 @@
                         }
                      }
                   ).then(data1 =>{
-                     data1.json().then((track) =>{console.log(track)})
+                     data1.json().then((track) =>{
+                        console.log(track)
+                     })
+                     
                   })
                   console.log(output)
             }
-              
+            
+            
        
        
          window.onSpotifyWebPlaybackSDKReady = () => {
-            console.log(hey);
+            console.log(getvaluefrombox());
 
             function getvaluefrombox(){
                var getvalue = document.getElementById("input_id").value;
