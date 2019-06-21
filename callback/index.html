@@ -44,7 +44,7 @@
          let access_token = params.get("access_token");
          console.log(access_token);
          let hey = async function getval(){ msg = "waddup"; return msg}
-         console.log(hey);
+         console.log(hey());
 
            /*function getvaluefrombox(){
                var getvalue = document.getElementById("input_id").value;
@@ -76,9 +76,7 @@
        
        
          window.onSpotifyWebPlaybackSDKReady = () => {
-            async function wait(){
-            console.log(getvaluefrombox());
-            }
+            
 
             function getvaluefrombox(){
                var getvalue = document.getElementById("input_id").value;
