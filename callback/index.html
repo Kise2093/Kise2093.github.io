@@ -53,7 +53,7 @@
            output = document.getElementById("input_id").innerHTML = getvaluefrombox();
            */
            async function getvaluefrombox(){
-              var getvalue = document.getElementById("input_id").value;
+              var output = document.getElementById("input_id").value;
                fetch(
                      `https://api.spotify.com/v1/search?q=`+ output +`&type=track`, {
                            headers: {
