@@ -44,12 +44,12 @@
          let access_token = params.get("access_token");
          console.log(access_token);
  
-            function getvaluefrombox(){
-               var getvalue = document.getElementById("search");
-               console.log(getvalue);
-               return getvalue;
-            }
-            output = document.getElementById("input_id").innerHTML = getvaluefrombox();
+           // function getvaluefrombox(){
+         //      var getvalue = document.getElementById("search");
+         //      console.log(getvalue);
+         //      return getvalue;
+         //   }
+         //   output = document.getElementById("input_id").innerHTML = getvaluefrombox();
            
        
        
@@ -72,6 +72,9 @@
             })
             //function for getting track's name
          //this one is still broke
+            function getvaluefrom(){
+               var output = document.getElementById("input_id").value;
+               console.log(output);
                fetch(
                      `https://api.spotify.com/v1/search?q=`+ output +`&type=track`, {
                            headers: {
@@ -82,6 +85,8 @@
                   ).then(data1 =>{
                      data1.json().then((track) =>{console.log(track)})
                   })
+
+            }
             
             
 
