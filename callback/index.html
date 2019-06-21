@@ -43,16 +43,13 @@
          console.log(location.hash.substring(1));
          let access_token = params.get("access_token");
          console.log(access_token);
-         var hey;
+         
            function getvaluefrombox(){
                var getvalue = document.getElementById("input_id").value;
                console.log(getvalue);
-               hey = getvalue;
               return getvalue;
             }
-            output = getvaluefrombox();
            // output = document.getElementById("input_id").innerHTML = getvaluefrombox();
-           console.log(hey);
            
        
        
@@ -75,9 +72,9 @@
             })
             //function for getting track's name
          //this one is still broke
-            
+            getvaluefrombox().then(values =>{
                fetch(
-                     `https://api.spotify.com/v1/search?q=`+ hey +`&type=track`, {
+                     `https://api.spotify.com/v1/search?q=`+ values +`&type=track`, {
                            headers: {
                            'Content-Type': 'application/json',
                            'Authorization': `Bearer ${access_token}`
@@ -86,7 +83,7 @@
                   ).then(data1 =>{
                      data1.json().then((track) =>{console.log(track)})
                   })
-            
+            })
             
             
 
