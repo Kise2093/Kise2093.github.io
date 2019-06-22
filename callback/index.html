@@ -40,53 +40,31 @@
       <script>
         
          let params = new URLSearchParams(window.location.hash.substring(1));
-         console.log(location.hash.substring(1));
          let access_token = params.get("access_token");
-         console.log(access_token);
-         let hey = async function getval(){ msg = "waddup"; return msg}
-         console.log(hey());
-         document.write(hey());
-         console.log(hey);
-
-           /*function getvaluefrombox(){
-               var getvalue = document.getElementById("input_id").value;
-               console.log(getvalue);
-              return getvalue;
-            }
-            getv = getvaluefrombox();
-           output = document.getElementById("input_id").innerHTML = getvaluefrombox();
-           */
-          async function getvaluefrombox(){
-              var output = document.getElementById("input_id").value;
-               fetch(
-                     `https://api.spotify.com/v1/search?q=`+ output +`&type=track`, {
-                           headers: {
-                           'Content-Type': 'application/json',
-                           'Authorization': `Bearer ${access_token}`
-                        }
-                     }
-                  ).then(data1 =>{
-                     data1.json().then((track) =>{
-                        console.log(track)
-                     })
-                     
-                  })
-                  return output;
-            }
-            console.log(getvaluefrombox());
+         async function getvaluefrombox(){
+            var output = document.getElementById("input_id").value;
+            fetch(
+               `https://api.spotify.com/v1/search?q=`+ output +`&type=track`, {
+                     headers: {
+                     'Content-Type': 'application/json',
+                     'Authorization': `Bearer ${access_token}`
+                  }
+               }
+            ).then(data1 =>{
+               data1.json().then((track) =>{
+                  console.log(track)
+               })
+            })
+            return output;
+         }
             
-            
-       
        
          window.onSpotifyWebPlaybackSDKReady = () => {
-            
-
             function getvaluefrombox(){
                var getvalue = document.getElementById("input_id").value;
                console.log(getvalue);
               return getvalue;
             }
-
             
             player = new Spotify.Player({
                name: 'Kris from web',
@@ -101,33 +79,6 @@
                   console.log('The Web Playback SDK successfully connected to Spotify!');
                }
             })
-            //function for getting track's name
-         //this one is still broke
-           // getvaluefrombox().then(values =>{
-              async function waitforinput(getv){
-               fetch(
-                     `https://api.spotify.com/v1/search?q=`+ output +`&type=track`, {
-                           headers: {
-                           'Content-Type': 'application/json',
-                           'Authorization': `Bearer ${access_token}`
-                        }
-                     }
-                  ).then(data1 =>{
-                     data1.json().then((track) =>{console.log(track)})
-                  })
-              }
-           // })
-            
-            
-
-            //example for getting our data 
-              let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
-               headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                     }
-               }).then(data5 => data5.json())
-
          
             player.addListener('ready', ({ device_id }) => {
                console.log('Web Playback is ready to be played!');
@@ -156,22 +107,29 @@
                })
             })
 
+            //example for getting our data 
+            let getuserdata = fetch(`https://api.spotify.com/v1/me`,{
+            headers: {
+                     'Content-Type': 'application/json',
+                     'Authorization': `Bearer ${access_token}`
+                  }
+            }).then(data5 => data5.json())
+
             getuserdata.then(function(result){
                //printing into console log the whole result of getting user data
                console.log(result);
                document.getElementById("display_name").innerHTML = result.display_name
 
-            player.setName(result.display_name).then(() =>{
-               console.log('Player name updated!');
-               fetch(`https://api.spotify.com/v1/me`,{
-               headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${access_token}`
-                     }
+               player.setName(result.display_name).then(() =>{
+                  console.log('Player name updated!');
+                  // fetch(`https://api.spotify.com/v1/me`,{
+                  //    headers: {
+                  //          'Content-Type': 'application/json',
+                  //          'Authorization': `Bearer ${access_token}`
+                  //    }
+                  // })
                })
-
-             })
-             })
+            })
          }
          
       </script>
